@@ -1,0 +1,36 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 255, 255, 255;
+  --background-start-rgb: 17, 24, 39;
+  --background-end-rgb: 17, 24, 39;
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+  font-family: 'Courier New', Courier, monospace;
+}
+
+@layer base {
+  h1, h2, h3, h4 {
+    @apply font-bold;
+  }
+  
+  button {
+    @apply transition-colors duration-200;
+  }
+}
+
+@layer components {
+  .oregon-button {
+    @apply px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700;
+  }
+}
