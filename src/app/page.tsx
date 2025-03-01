@@ -40,8 +40,6 @@ export default function Home() {
         companions.filter(name => name.trim() !== ''),
         occupation as any
       );
-      // Add milestones to game state
-      newGameState.milestones = milestones;
       setGameState(newGameState);
       setMessagesToShow(newGameState.messages);
     }
@@ -180,7 +178,7 @@ export default function Home() {
   const handleChangePace = (newPace: 'steady' | 'strenuous' | 'grueling' | 'resting') => {
     if (!gameState) return;
     
-    const updatedGameState = { 
+    const updatedGameState: GameState = { 
       ...gameState,
       pace: newPace,
       messages: [`You changed your pace to ${newPace}.`]
@@ -194,7 +192,7 @@ export default function Home() {
   const handleChangeRations = (newRations: 'filling' | 'meager' | 'bare bones' | 'none') => {
     if (!gameState) return;
     
-    const updatedGameState = { 
+    const updatedGameState: GameState = { 
       ...gameState,
       rations: newRations,
       messages: [`You changed your rations to ${newRations}.`]
@@ -209,7 +207,7 @@ export default function Home() {
     if (!gameState) return;
     
     // Rest for a day (using the pace 'resting')
-    const restGameState = { ...gameState, pace: 'resting' };
+    const restGameState: GameState = { ...gameState, pace: 'resting' };
     const updatedGameState = advanceTurn(restGameState);
     
     updatedGameState.messages = ['You rested for a day. Your party\'s health may improve.'];
@@ -224,7 +222,7 @@ export default function Home() {
     if (!gameState) return;
     
     // Update game state with hunting results
-    const updatedGameState = { 
+    const updatedGameState: GameState = { 
       ...gameState,
       supplies: {
         ...gameState.supplies,
@@ -242,7 +240,7 @@ export default function Home() {
     if (!gameState) return;
     
     // Update game state with hunting results (just ammunition loss)
-    const updatedGameState = { 
+    const updatedGameState: GameState = { 
       ...gameState,
       supplies: {
         ...gameState.supplies,
@@ -264,7 +262,7 @@ export default function Home() {
   ) => {
     if (!gameState) return;
     
-    let updatedGameState = { ...gameState };
+    let updatedGameState: GameState = { ...gameState };
     
     // Apply consequences
     if (cost) {
@@ -346,7 +344,7 @@ export default function Home() {
   const handlePurchase = (updatedSupplies: Supply) => {
     if (!gameState) return;
     
-    const updatedGameState = {
+    const updatedGameState: GameState = {
       ...gameState,
       supplies: updatedSupplies,
       messages: ['You purchased new supplies from the general store.']

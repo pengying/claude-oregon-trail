@@ -444,8 +444,8 @@ const WagonAnimation: React.FC<WagonAnimationProps> = ({
             }...`}
           </div>
           <div className="text-xs text-gray-300 italic flex justify-between">
-            <span>Next stop: {gameState?.nextMilestone.name || 'Unknown'}</span>
-            <span>Miles to go: {gameState?.nextMilestone.distance - gameState?.milesTraveled || 'Unknown'}</span>
+            <span>Next stop: {gameState ? gameState.nextMilestone.name : 'Unknown'}</span>
+            <span>Miles to go: {gameState ? gameState.nextMilestone.distance - gameState.milesTraveled : 'Unknown'}</span>
           </div>
         </div>
       </div>

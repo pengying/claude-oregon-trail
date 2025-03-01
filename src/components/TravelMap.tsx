@@ -70,7 +70,7 @@ const TravelMap: React.FC<TravelMapProps> = ({ gameState, onClose }) => {
   // Find the last passed milestone without duplication
   const getLastPassedMilestoneIndex = () => {
     // Create displayMilestones array properly
-    const displayMilestones = [...(gameState.milestones || [])];
+    const displayMilestones = [...gameState.milestones];
     const hasIndependence = displayMilestones.some(m => m.name === 'Independence, Missouri');
     if (!hasIndependence) {
       displayMilestones.unshift({ name: 'Independence, Missouri', distance: 0, type: 'town' });
@@ -110,8 +110,8 @@ const TravelMap: React.FC<TravelMapProps> = ({ gameState, onClose }) => {
     const lastMilestoneName = milestonePositions[lastPassedMilestoneIndex].name;
     const nextMilestoneName = milestonePositions[lastPassedMilestoneIndex + 1].name;
     
-    const lastMilestone = gameState.milestones?.find(m => m.name === lastMilestoneName);
-    const nextMilestone = gameState.milestones?.find(m => m.name === nextMilestoneName);
+    const lastMilestone = gameState.milestones.find(m => m.name === lastMilestoneName);
+    const nextMilestone = gameState.milestones.find(m => m.name === nextMilestoneName);
     
     if (!lastMilestone || !nextMilestone) {
       return { x: milestonePositions[0].x, y: milestonePositions[0].y };
@@ -257,7 +257,7 @@ const TravelMap: React.FC<TravelMapProps> = ({ gameState, onClose }) => {
               {/* Place milestone markers with improved styling */}
               {milestonePositions.map((pos, index) => {
                 // Use the milestone from gameState to avoid duplication
-                const milestone = gameState.milestones?.find(m => m.name === pos.name) || 
+                const milestone = gameState.milestones.find(m => m.name === pos.name) || 
                                   (pos.name === 'Independence, Missouri' ? { name: 'Independence, Missouri', distance: 0, type: 'town' } : null);
                 
                 if (!milestone) return null; // Skip if milestone not found
@@ -471,7 +471,7 @@ const TravelMap: React.FC<TravelMapProps> = ({ gameState, onClose }) => {
               {/* Make sure Independence only appears once by checking if it's already in gameState.milestones */}
               {(() => {
                 // Start with all milestones from gameState
-                const displayMilestones = [...(gameState.milestones || [])];
+                const displayMilestones = [...gameState.milestones];
                 
                 // Check if Independence is already included
                 const hasIndependence = displayMilestones.some(m => m.name === 'Independence, Missouri');

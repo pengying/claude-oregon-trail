@@ -51,6 +51,7 @@ export interface GameState {
   events: string[]; // history of game events
   messages: string[]; // current messages to display
   hadSignificantEvent?: boolean; // Flag to indicate if travel should be interrupted
+  milestones: Milestone[]; // List of all milestones on the trail
 }
 
 export const startingMoneyByOccupation: Record<Occupation, number> = {
@@ -121,6 +122,7 @@ export const initializeGame = (
     rations: 'filling',
     events: ['Your journey begins in Independence, Missouri.'],
     messages: ['You set out on the trail with high hopes. The journey ahead is long but your spirits are high.'],
+    milestones: milestones,
   };
 };
 
